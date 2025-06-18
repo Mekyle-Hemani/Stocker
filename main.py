@@ -33,9 +33,12 @@ if __name__ == "__main__":
 
     stocks=filemod.read("watchlist.txt")
     while True:
+        output=[]
         for item in stocks:
             try:
-                retrieve.grab(item)
+                output.append(retrieve.grab(item))
             except:
                 colourprint.print_colored(f"Too many requests. Error getting data on stock {item}")
+        for item in output:
+            print(item)
         time.sleep(int(currentContents[0]))
