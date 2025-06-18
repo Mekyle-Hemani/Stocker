@@ -22,7 +22,20 @@ if __name__ == "__main__":
     
     import retrieve
     import config.filemod as filemod
+    import time
+
+    try:
+        currentContents = filemod.read("timing.txt")
+    except:
+        filemod.create("timing.txt")
+        currentContents = ["300"]
+        filemod.write("timing.txt", currentContents[0])
 
     stocks=filemod.read("watchlist.txt")
-    for item in stocks:
-        retrieve.grab(item)
+    while True:
+        for item in stocks:
+            try:
+                retrieve.grab(item)
+            except:
+                colourprint.print_colored(f"Too many requests. Error getting data on stock {item}")
+        time.sleep(int(currentContents[0]))

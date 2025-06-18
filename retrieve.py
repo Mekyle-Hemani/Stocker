@@ -1,6 +1,6 @@
 import yfinance as yf
 
 def grab(stock):
-    apple = yf.Ticker(stock)
-    latest_price = apple.history(period="1d")['Close'].iloc[-1]
-    print(f"Latest price of {stock}: ${latest_price:.2f}")
+    stockData = yf.Ticker(stock)
+    latestPrice = stockData.history(period="1d")['Close'].iloc[-1]
+    print(f"Latest price of {stock}: ${latestPrice:.2f}")

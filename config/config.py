@@ -3,8 +3,8 @@ import filemod
 while True:
     command = input("Configure Stocker >>> ")
 
-    commandlist = ["help", "add", "remove", "list", "quit-ui", "quit-stocker"]
-    commandlistprint = ["help", "add [email, stock]", "remove [email, stock]", "list [email, stock]", "quit-ui", "quit-stocker"]
+    commandlist = ["help", "add", "remove", "list", "quit-ui", "quit-stocker", "time"]
+    commandlistprint = ["help", "add [email, stock]", "remove [email, stock]", "list [email, stock]", "quit-ui", "quit-stocker", "time"]
 
     commandsplit = command.split(" ")
 
@@ -91,7 +91,7 @@ while True:
             part = ["email.txt", "The following emails are on the list:"]
         else:
             print(f"Command '{command}' is invalid. Type 'help' to see the total command list")
-            break
+            continue
         
         try:
             currentContents = filemod.read(part[0])
@@ -102,6 +102,16 @@ while True:
         print(part[1])
         for item in currentContents:
             print(item)
+    
+    elif commandsplit[0] == "time":
+        try:
+            filemod.delete("timing.txt")
+            filemod.create("timing.txt")
+        except:
+            filemod.create("timing.txt")
+            
+        filemod.write("timing.txt", commandsplit[1])
+        print(f"The new update time is {commandsplit[1]}")
     
     else:
         print("Command was likely empty")
