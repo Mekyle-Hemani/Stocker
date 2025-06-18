@@ -38,7 +38,7 @@ if __name__ == "__main__":
             try:
                 output.append(retrieve.grab(item))
             except:
-                colourprint.print_colored(f"Too many requests. Error getting data on stock {item}")
+                colourprint.print_colored(f"Too many requests. Error getting data on stock {item}", colourprint.RED)
         for item in output:
             print(item)
         time.sleep(int(currentContents[0]))
