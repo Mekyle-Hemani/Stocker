@@ -34,6 +34,9 @@ if __name__ == "__main__":
     stocks=filemod.read("watchlist.txt")
     while True:
         output=[]
+        localTime = time.localtime()
+        finalTime = time.strftime("%d-%m-%Y %H:%M:%S", localTime)
+        colourprint.print_colored(f"Current time is: {finalTime}", colourprint.BLUE)
         for item in stocks:
             try:
                 output.append(retrieve.grab(item))
